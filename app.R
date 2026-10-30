@@ -1,24 +1,4 @@
-# BUDGET101.R (updated: custom-per-expense "Other" category inputs enabled; categories removed from Settings UI)
-# - When "Other" is selected in category (main or sub), a custom input appears and the entered value is saved for that expense only.
-# - Categories/subcategories management UI removed from Settings (handled only in Expenses/data layer).
-# - Ensured custom category/subcategory values flow through tables, syncs, Excel and PDF reports unchanged.
-# - Preserves project isolation, automatic sync, and audit-exclusion rules for PDFs.
-#
-# NOTE: uuid() and now() are defined before init_db() to avoid "could not find function 'uuid'" errors.
-# NEW: Role-based access control (Scientist / Administrator)
-# - Startup login modal added (Scientist / Administrator)
-# - Scientist flow:
-#   * No password at app launch
-#   * Choose Create New Project or Open Existing Project
-#   * Scientist opens existing projects with Project ID plus a system-generated three-letter Access Key
-#   * Scientist access is restricted to that single project and cannot access Settings
-# - Administrator flow unchanged (protected by master admin password stored hashed in settings)
-#
-# Implementation notes:
-# - All existing features and functions are preserved.
-# - Access controls are enforced at UI/listing and action points. No core reporting/sync logic changed.
-# - If a scientist attempts to access unauthorized functionality, access is denied via notifications.
-#
+
 `%||%` <- function(a, b) if (!is.null(a) && length(a) > 0) a else b
 
 detect_app_root <- function() {
